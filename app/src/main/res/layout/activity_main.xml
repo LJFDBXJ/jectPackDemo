@@ -7,7 +7,7 @@
 
         <variable
             name="observer"
-            type="com.example.jetpacktest.entity.ObservableUser" />
+            type="com.example.jetpacktest.databinding.ObservableUser" />
 
         <variable
             name="data"
@@ -19,58 +19,125 @@
 
         <variable
             name="handler"
-            type="com.example.jetpacktest.utle.MyHandler" />
+            type="com.example.jetpacktest.databinding.MyHandler" />
 
+        <import type="com.example.jetpacktest.databinding.ConvertAdapter" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        tools:context=".MainActivity">
+        tools:context=".databinding.ui.DataBindingActivity">
 
-        <Button
-            android:id="@+id/plus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onClick" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/one"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#FF9900"
+            android:gravity="center_vertical"
+            android:onClick="@{handler::customClick}"
+            android:text="@string/colonInvoke"
+            android:textColor="#FF0000"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:onClick="@{handler::onClickFriend}" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@{String.valueOf(user.name)}"
-            android:textSize="20sp" />
-
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{observer.firstName}"
-            android:textColor="#E31010"
-            android:textSize="50sp"
-            tools:text="Observer" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:tint="@color/teal_200"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            error=""
-            recyclerList="@{data}"
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/two"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            android:layout_marginVertical="4dp"
+            android:background="#00FF7B"
+            android:onClick="@{()->handler.customClick(two,user.name)}"
+            android:text="@{user.name}"
+            android:textColor="#FF0000"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toTopOf="@id/three"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/one" />
 
-    </LinearLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/three"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#BB00FF"
+            android:gravity="center_vertical"
+            android:onClick="@{()->user.update()}"
+            android:text="@{String.valueOf(user.age)+`  ()-> 方法回调`}"
+            android:textColor="#FF0000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/two" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/name"
+            numberOfSets="@={observer.numberOfSets}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:background="#FF9900"
+            android:text="@string/customTwoBind"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/three"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/three" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/twoBinding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:background="#007BFF"
+            android:checked="@={observer.numberOfSets}"
+            android:text="@string/twoBind"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/convert"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/convert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:background="#FF6600"
+            android:text="@{ConvertAdapter.setChange(observer.numberOfSets)+`转`}"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/oneRecycler"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/twoBinding" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/oneRecycler"
+            error=""
+            recyclerList="@{data}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toStartOf="@id/twoRecycler"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/convert" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/twoRecycler"
+            error=""
+            recyclerSingleList="@{data}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/oneRecycler"
+            app:layout_constraintTop_toTopOf="@id/oneRecycler" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

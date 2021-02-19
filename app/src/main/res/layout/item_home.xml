@@ -4,28 +4,19 @@
 
     <data>
 
-        <variable
-            name="user"
-            type="com.example.jetpacktest.entity.User" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/name"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/jumpActivity"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="@{user.name}"
-            android:textSize="20sp" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#00E7FF"
-            android:text="@{String.valueOf(user.age)}"
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent
+" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
