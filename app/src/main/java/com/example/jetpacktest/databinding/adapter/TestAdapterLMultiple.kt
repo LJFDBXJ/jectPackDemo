@@ -30,10 +30,8 @@ class TestAdapterLMultiple : LBaseMultipleAdapter<User>(
 
     override fun getItemViewType(position: Int): Int {
         super.getItemViewType(position)
-        return if (position < 5)
-            0
-        else
-            1
+        val item = getItem(position)
+        return item.layoutType
     }
 
     override fun bindData(bind: ViewDataBinding, position: Int) {

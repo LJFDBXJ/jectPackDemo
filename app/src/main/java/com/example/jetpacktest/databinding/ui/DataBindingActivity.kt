@@ -3,6 +3,7 @@ package com.example.jetpacktest.databinding.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.*
+import androidx.databinding.adapters.CalendarViewBindingAdapter
 import com.example.jetpacktest.R
 import com.example.jetpacktest.databinding.ActivityMainBinding
 import com.example.jetpacktest.databinding.MyHandler
@@ -21,7 +22,6 @@ class DataBindingActivity : AppCompatActivity() {
         //第二种使用方式  不传第三个参数，但是需要静态方法
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-
 //      第一种传入binding 实例
         binding.handler = MyHandler()
 
@@ -34,8 +34,8 @@ class DataBindingActivity : AppCompatActivity() {
         binding.user = user
 
         binding.data = userList
-        for (i in 0..20) {
-            userList.add(User(ObservableField("Name"), ObservableInt(i)))
+        for (i in 0..10) {
+            userList.add(User(ObservableField("Name"), ObservableInt(i), i % 2))
         }
     }
 

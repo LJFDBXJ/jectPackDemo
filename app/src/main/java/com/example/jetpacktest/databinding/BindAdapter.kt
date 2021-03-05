@@ -1,8 +1,10 @@
 package com.example.jetpacktest.databinding
 
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.databinding.*
 import androidx.recyclerview.widget.RecyclerView
+import com.example.jetpacktest.HomeAdapter
 import com.example.jetpacktest.databinding.adapter.TestAdapterLMultiple
 import com.example.jetpacktest.databinding.adapter.TestAdapterLDSingle
 import com.example.jetpacktest.entity.User
@@ -52,6 +54,7 @@ object BindStaticAdapter {
         adapter = adapterTest
         adapterTest.submitList(age)
     }
+
 
     @BindingAdapter("recyclerSingleList", "error", requireAll = false)
     @JvmStatic

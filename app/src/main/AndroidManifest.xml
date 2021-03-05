@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jetpacktest">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,8 +17,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".udp.ReceiveActivity"
+            android:theme="@style/Theme.AppCompat.Light" />
+
+        <activity android:name=".livedata_model.LivedataModelActivity" />
+        <activity android:name=".lifecycle.LifecycleActivity" />
         <activity android:name=".custom_view.ui.DragActivity" />
-        <activity android:name=".databinding.ui.DataBindingActivity"/>
+        <activity android:name=".databinding.ui.DataBindingActivity" />
+
     </application>
 
 </manifest>

@@ -15,25 +15,44 @@ import androidx.customview.widget.ViewDragHelper
 class CustomFrameLayout : FrameLayout {
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    )
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes)
+    constructor(
+        context: Context,
+        attrs: AttributeSet?,
+        defStyleAttr: Int,
+        defStyleRes: Int
+    ) : super(context, attrs, defStyleAttr, defStyleRes)
 
     var dragHalper: ViewDragHelper? = null
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun addOnLayoutChangeListener(listener: OnLayoutChangeListener?) {
         super.addOnLayoutChangeListener(listener)
-        val outLine=CircleOutlineProvider()
-        getChildAt(0).outlineProvider=outLine
+        val outLine = CircleOutlineProvider()
+        getChildAt(0).outlineProvider = outLine
 
     }
+
     init {
+
         dragHalper = ViewDragHelper.create(this, 1.0f, object : ViewDragHelper.Callback() {
             override fun tryCaptureView(child: View, pointerId: Int): Boolean {
                 return childCount > 0
             }
 
-            override fun onViewPositionChanged(changedView: View, left: Int, top: Int, dx: Int, dy: Int) {
+            override fun onViewPositionChanged(
+                changedView: View,
+                left: Int,
+                top: Int,
+                dx: Int,
+                dy: Int
+            ) {
                 super.onViewPositionChanged(changedView, left, top, dx, dy)
             }
 
@@ -73,6 +92,7 @@ class CustomFrameLayout : FrameLayout {
         }
         return dragHalper!!.shouldInterceptTouchEvent(ev)
     }
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private class CircleOutlineProvider : ViewOutlineProvider() {
         override fun getOutline(view: View, outline: Outline) {

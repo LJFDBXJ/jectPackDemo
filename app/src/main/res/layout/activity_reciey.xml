@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="recive"
+            type="com.example.jetpacktest.udp.ReceiveActivity" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".util.RecieyActivity">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tipState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="链接状态"
+                android:textAllCaps="false"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/tipState"
+                app:layout_constraintStart_toEndOf="@id/tipState"
+                app:layout_constraintTop_toTopOf="@id/tipState" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/serverTip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="服务端IP地址:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tipState" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_ip"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/serverTip"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/serverTip"
+                app:layout_constraintTop_toTopOf="@id/serverTip" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/serverPort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="服务端 port 地址:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/serverTip" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_port"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/serverPort"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/serverPort"
+                app:layout_constraintTop_toTopOf="@id/serverPort" />
+
+            <Button
+                android:id="@+id/btnConnect"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:onClick="@{()->recive.onClickView(btnConnect)}"
+                android:text="链接"
+                app:layout_constraintEnd_toStartOf="@id/btnDisconnect"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/serverPort" />
+
+            <Button
+                android:id="@+id/btnDisconnect"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->recive.onClickView(btnDisconnect)}"
+                android:text="断开"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btnConnect"
+                app:layout_constraintTop_toTopOf="@id/btnConnect" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/contentTip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnDisconnect" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/et_send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="发送内容"
+                app:layout_constraintBottom_toBottomOf="@id/contentTip"
+                app:layout_constraintStart_toEndOf="@id/contentTip"
+                app:layout_constraintTop_toTopOf="@id/contentTip" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/et_send"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/et_send"
+                app:layout_constraintTop_toTopOf="@id/et_send" />
+
+            <Button
+                android:id="@+id/btnSend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:onClick="@{()->recive.onClickView(btnSend)}"
+                android:text="发送"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_send" />
+
+            <Button
+                android:id="@+id/btnClear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:onClick="@{()->recive.onClickView(btnClear)}"
+                android:text="清除"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnSend" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_receive"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="#73CCEF"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnClear" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
