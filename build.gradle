@@ -2,6 +2,10 @@
 buildscript {
     ext.kotlin_version = "1.4.30"
     repositories {
+        maven { url 'https://maven.aliyun.com/repository/releases' }
+        maven { url 'https://dl.bintray.com/umsdk/release' }
+        maven { url 'https://developer.huawei.com/repo/' }
+        maven { url 'https://gitlab.com/xiaomi-passport/maven-repository/raw/master/releases' }
         google()
         jcenter()
     }
@@ -16,6 +20,13 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url 'https://maven.aliyun.com/repository/releases' }
+        maven { url 'https://dl.bintray.com/umsdk/release' }
+        maven { url 'https://developer.huawei.com/repo/' }
+        maven { url 'https://gitlab.com/xiaomi-passport/maven-repository/raw/master/releases' }
+        flatDir {
+            dirs 'libs'
+        }
         google()
         jcenter()
     }

@@ -15,12 +15,35 @@
         android:layout_height="match_parent"
         tools:context=".HomeActivity">
 
+        <Button
+            android:id="@+id/changeHeadOrFoot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="changeHeadOrFoot"
+            android:textAllCaps="false"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/changeManager"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/changeManager"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="changeManager"
+            android:textAllCaps="false"
+            android:layout_marginStart="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/changeHeadOrFoot"
+            app:layout_constraintTop_toTopOf="@id/changeHeadOrFoot" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/homeRecycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/changeHeadOrFoot"
             app:spanCount="2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import com.example.jetpacktest.BR
 import com.example.jetpacktest.R
-import com.example.jetpacktest.base.LBaseMultipleAdapter
+import com.example.jetpacktest.base.BaseDViewHolder
+import com.example.jetpacktest.base.LDBaseMultipleAdapter
 import com.example.jetpacktest.databinding.ItemBindTwoHomeBinding
 import com.example.jetpacktest.entity.User
 
@@ -22,7 +23,7 @@ val dif = object : DiffUtil.ItemCallback<User>() {
     }
 }
 
-class TestAdapterLMultiple : LBaseMultipleAdapter<User>(
+class TestAdapterLDMultiple : LDBaseMultipleAdapter<User>(
     dif,
     R.layout.item_bind_one_home,
     R.layout.item_bind_two_home
@@ -34,10 +35,6 @@ class TestAdapterLMultiple : LBaseMultipleAdapter<User>(
         return item.layoutType
     }
 
-    override fun bindData(bind: ViewDataBinding, position: Int) {
-        val item = getItem(position)
-        bind.setVariable(BR.user, item)
-    }
 
     init {
         elementClick = { binding ->
@@ -51,6 +48,11 @@ class TestAdapterLMultiple : LBaseMultipleAdapter<User>(
                 }
 
         }
+    }
+
+    override fun bindData(bind: BaseDViewHolder<ViewDataBinding>, position: Int) {
+        val item = getItem(position)
+        bind.binding.setVariable(BR.user, item)
     }
 }
 
