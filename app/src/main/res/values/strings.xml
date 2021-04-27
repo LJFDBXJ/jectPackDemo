@@ -3,4 +3,6 @@
     <string name="twoBind">双向数据绑定 使用原有属性</string>
     <string name="customTwoBind">使用自定义特性的双向数据绑定</string>
     <string name="colonInvoke">:: 调用</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
